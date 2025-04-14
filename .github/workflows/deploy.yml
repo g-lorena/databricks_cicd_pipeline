@@ -35,11 +35,14 @@ jobs:
       - uses: databricks/setup-cli@main
 
       - name: Validate Databricks bundle
-        run: make validate-bundle
+        run: |
+          make validate-bundle
 
       - name: Deploy Databricks bundle
-        run: make deploy-bundle
+        run: |
+          make deploy-bundle
 
       - name: Run Databricks job
-        run: make run-job DATABRICKS_CLUSTER_ID=${{ secrets.DATABRICKS_CLUSTER_ID }}
+        run: |
+          make run DATABRICKS_CLUSTER_ID=${{ secrets.DATABRICKS_CLUSTER_ID }}
 
