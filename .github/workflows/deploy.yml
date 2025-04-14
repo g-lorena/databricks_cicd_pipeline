@@ -28,7 +28,7 @@ jobs:
       - name: Run unit tests
         run: |
           pip install pytest
-          pytest tests/unit
+          pytest tests/
 
       - uses: databricks/setup-cli@main
         with:
