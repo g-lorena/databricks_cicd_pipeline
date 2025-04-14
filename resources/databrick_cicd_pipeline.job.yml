@@ -10,7 +10,6 @@ resources:
           interval: 1
           unit: DAYS
 
-
       #email_notifications:
       #  on_failure:
       #    - your_email@example.com
