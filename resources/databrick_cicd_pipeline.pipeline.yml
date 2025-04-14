@@ -1,0 +1,13 @@
+# The main pipeline for databrick_cicd_pipeline
+resources:
+  pipelines:
+    databrick_cicd_pipeline_pipeline:
+      name: databrick_cicd_pipeline_pipeline
+      catalog: dev_workspace_13278114916290
+      schema: databrick_cicd_pipeline_${bundle.target}
+      libraries:
+        - notebook:
+            path: ../src/dlt_pipeline.ipynb
+
+      configuration:
+        bundle.sourcePath: ${workspace.file_path}/src
