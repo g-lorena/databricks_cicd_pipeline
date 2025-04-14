@@ -11,9 +11,6 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    env:
-      DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
-      DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -29,6 +26,8 @@ jobs:
           pip install -r requirements-dev.txt
 
       - name: Run unit tests
+        env:
+          DATABRICKS_CLUSTER_ID: ${{ secrets.DATABRICKS_CLUSTER_ID }}
         run: |
           pip install pytest
           pytest tests/
