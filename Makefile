@@ -18,4 +18,4 @@ deploy-bundle:
 
 # run
 run:
-	databricks bundle run -t dev --cluster-id $(DATABRICKS_CLUSTER_ID) databrick_cicd_pipeline_job
+	databricks bundle run -t dev databrick_cicd_pipeline_job
