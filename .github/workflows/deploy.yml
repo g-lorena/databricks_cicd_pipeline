@@ -1,0 +1,46 @@
+name: Deploy Databricks
+
+on:
+  push:
+    branches:
+      - develop
+    paths:
+      - "resources/**"
+      - "src/**"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run unit tests
+        run: |
+          pip install pytest
+          pytest tests/unit
+
+      - uses: databricks/setup-cli@main
+        with:
+          databricks-host: ${{ secrets.DATABRICKS_HOST }}
+          databricks-token: ${{ secrets.DATABRICKS_TOKEN }}
+
+      - name: Validate Databricks bundle
+        run: databricks bundle validate -t dev
+
+      - name: Deploy Databricks bundle
+        run: databricks bundle deploy -t dev
+
+      - name: Run Databricks job
+        run: databricks bundle run -t dev databrick_cicd_pipeline_job
+
