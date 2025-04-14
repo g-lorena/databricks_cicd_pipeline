@@ -3,4 +3,4 @@ pytest
 setuptools
 wheel
 databricks-connect>=15.4
-pyspark>=3.5.*
+pyspark>=3.5
