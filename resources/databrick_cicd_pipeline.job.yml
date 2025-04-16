@@ -13,7 +13,6 @@ resources:
       #email_notifications:
       #  on_failure:
       #    - your_email@example.com
-
       tasks:
         - task_key: notebook_task
           job_cluster_key: job_cluster
@@ -42,8 +41,8 @@ resources:
       job_clusters:
         - job_cluster_key: job_cluster
           new_cluster:
-            spark_version: 15.4.x-scala2.12
-            node_type_id: i3.xlarge
+            spark_version: 16.1.x-scala2.12 #15.4.x-scala2.12
+            node_type_id: m5d.xlarge
             data_security_mode: SINGLE_USER
             autoscale:
                 min_workers: 1
